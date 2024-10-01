@@ -1,0 +1,36 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    padding: 20px;
+    width: 400px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .login-link {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .login-link a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  

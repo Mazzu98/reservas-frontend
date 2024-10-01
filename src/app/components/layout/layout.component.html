@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <span>Mi Aplicación</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/home">Inicio</button>
+    <button mat-button (click)="logout()">Cerrar sesión</button>
+  </mat-toolbar>
+  
+  <div class="content">
+    <router-outlet></router-outlet> <!-- Aquí se cargarán las páginas -->
+  </div>
+  
