@@ -7,3 +7,10 @@ export type Reservation = {
     start_date: string;
     end_date: string;
 };
+
+export type scheduleRequest = {
+    space_id: string;
+    event_name: string;
+    start_date: string;
+    end_date: string;
+}

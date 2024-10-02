@@ -10,19 +10,19 @@ import { NoUserGuard } from './guards/noUser.guard';
 import { ClientGuard } from './guards/client.guard';
 import { SpaceComponent } from './pages/space/space.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [NoUserGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [NoUserGuard]},
   { 
     path: '', 
-    component: LayoutComponent, // El layout se muestra siempre que el usuario esté logueado
+    component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent, canActivate: [ClientGuard] },
       { path: 'reservations', component: ReservationsComponent, canActivate: [ClientGuard] },
       { path: 'space/:id', component: SpaceComponent, canActivate: [AuthGuard] },
-      { path: 'dashboard', component: HomeComponent, canActivate: [AdminGuard] },
-      // { path: 'profile', component: ProfileComponent } // Agrega otras rutas aquí
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] }
     ]
   },
   {path: '', redirectTo: '/home', pathMatch: 'full'},

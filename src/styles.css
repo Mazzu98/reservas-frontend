@@ -10,6 +10,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.full-width {
+    width: 100%;
+}
+
 .mat-mdc-snack-bar-container.success-snackbar {
     --mdc-snackbar-container-color: #10bd1e;
     --mat-mdc-snack-bar-button-color: #fff;

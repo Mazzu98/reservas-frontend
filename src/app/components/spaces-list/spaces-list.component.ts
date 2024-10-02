@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { ServerProvider } from '../../services/server.service';
 import moment from 'moment';
-import { space } from '../../types/space';
+import { Space } from '../../types/space';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./spaces-list.component.css']
 })
 export class SpacesListComponent implements OnInit {
-  spaces: space[] = [];
+  spaces: Space[] = [];
   filteredSpaces: any[] = [];
   typeControl = new FormControl('');
   capacityControl = new FormControl('');
@@ -56,7 +56,7 @@ export class SpacesListComponent implements OnInit {
     }
   }
 
-  onSpaceSelect(space: space): void {
+  onSpaceSelect(space: Space): void {
     this.router.navigate(['/space', space.id ], { state: { date: this.dateControl.value } });
   }
 }

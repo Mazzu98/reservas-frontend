@@ -10,10 +10,6 @@
     width: 400px;
   }
   
-  .full-width {
-    width: 100%;
-  }
-  
   .error-message {
     color: red;
     margin-top: 10px;

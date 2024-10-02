@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ToastProvider } from './services/toast.service';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { MatTableModule } from '@angular/material/table';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SpaceFormModalComponent } from './components/space-form-modal/space-form-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { MatTableModule } from '@angular/material/table';
     SpacesListComponent,
     SpaceComponent,
     ScheduleSpaceModalComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    DashboardComponent,
+    SpaceFormModalComponent
   ],
   imports: [
     BrowserModule,

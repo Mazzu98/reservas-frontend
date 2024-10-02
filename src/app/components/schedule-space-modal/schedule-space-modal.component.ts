@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { scheduleRequest } from '../../types/space';
 import { ServerProvider } from '../../services/server.service';
 import { ToastProvider } from '../../services/toast.service';
 import { Router } from '@angular/router';
+import { scheduleRequest } from '../../types/reservation';
 
 @Component({
   selector: 'app-schedule-space-modal',
