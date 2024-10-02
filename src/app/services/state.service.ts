@@ -8,6 +8,11 @@ export class StateProvider {
     user: user | null = null;
 
     constructor(private router: Router, private server: ServerProvider) {
+        const token = localStorage.getItem('token');
+        if(token) {
+            this.server.updateHeaders(token);
+            this.getUser();
+        }
     }
 
     getUser() {

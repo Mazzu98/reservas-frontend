@@ -10,7 +10,7 @@ import { StateProvider } from '../../services/state.service';
 })
 export class LayoutComponent {
 
-  constructor(private router: Router, private server: ServerProvider, appState: StateProvider) {
+  constructor(private router: Router, private server: ServerProvider,public appState: StateProvider) {
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigate(['/login']);
