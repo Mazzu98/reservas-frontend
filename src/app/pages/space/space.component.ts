@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { ServerProvider } from '../../services/server.service';
@@ -24,7 +24,8 @@ export class SpaceComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private server: ServerProvider,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -99,7 +100,10 @@ export class SpaceComponent implements OnInit {
       data: {
         spaceId: this.spaceId,
         availableTimes: this.availableTimes,
-        day: this.dateControl.value
+        day: this.dateControl.value,
+        onSuccess: () => {
+          this.router.navigate(['/home']);
+        }
       }
     });
   }

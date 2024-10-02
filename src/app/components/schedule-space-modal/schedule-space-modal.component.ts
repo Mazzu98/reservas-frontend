@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
   styleUrl: './schedule-space-modal.component.css'
 })
 export class ScheduleSpaceModalComponent {
+  editMode: boolean = false;
   name: string = '';
   selectedStartTime: string | null = null;
   selectedEndTime: string | null = null;
   availableTimes: any = [];
   filteredEndTimes: any = [];
   day: string = '';
+  onSuccess: () => void;
 
   constructor(
     private router: Router,
@@ -24,8 +26,24 @@ export class ScheduleSpaceModalComponent {
     private server: ServerProvider,
     public dialogRef: MatDialogRef<ScheduleSpaceModalComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.availableTimes = data.availableTimes;
-    this.day = data.day;
+      if(data.reservationEdit){
+        this.editMode = true;
+        this.name = data.reservationEdit.event_name;
+        this.day = data.reservationEdit.start_date.split(' ')[0];
+        this.selectedStartTime = data.reservationEdit.start_date.split(' ')[1];
+        this.selectedEndTime = data.reservationEdit.end_date.split(' ')[1];
+
+        this.server.getSpaceAvailability(this.data.reservationEdit.space_id, this.day, data.reservationEdit.id)
+          .then((availableTimes) => {
+            this.availableTimes = availableTimes;
+          })
+      }
+      else{
+        this.availableTimes = data.availableTimes;
+        this.day = data.day;
+      }
+
+      this.onSuccess = data.onSuccess;
     }
 
   onStartTimeChange(startTime: string): void {
@@ -56,10 +74,18 @@ export class ScheduleSpaceModalComponent {
     };
     
     try{
-      await this.server.scheduleSpace(reservationData);
-      this.toast.showSuccess('Reserva creada');
+      if(this.editMode){
+        await this.server.editReservations(this.data.reservationEdit.id, reservationData);
+        this.toast.showSuccess('Reserva editada');
+      }
+      else {
+        await this.server.scheduleSpace(reservationData);
+        this.toast.showSuccess('Reserva creada');
+      }
+
+      this.onSuccess && this.onSuccess();
+
       this.dialogRef.close();
-      this.router.navigate(['/home']);
     }
     catch(error){
       this.toast.showError('Error al reservar el espacio');

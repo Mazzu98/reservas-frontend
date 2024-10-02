@@ -4,6 +4,7 @@ import { authResponse, loginRequest, registerRequest, user } from '../types/auth
 import { firstValueFrom } from 'rxjs';
 import moment from 'moment';
 import { scheduleRequest, space } from '../types/space';
+import { Reservation } from '../types/reservation';
 
 @Injectable()
 export class ServerProvider {
@@ -14,7 +15,7 @@ export class ServerProvider {
     private static availableSpaces = "space/search";
     private static spaceDailyAvailable = "space/{spaceId}/daily-available-slots";
     private static getSpace = "space";
-    private static schedule = "reservation";
+    private static reservation = "reservation";
     private headers = new HttpHeaders();
 
     constructor(public http: HttpClient) {
@@ -56,16 +57,31 @@ export class ServerProvider {
         return firstValueFrom(this.http.get<space>(url, {headers: this.headers}));
     }
 
-    public getSpaceAvailability(spaceId: number, date: string) {
+    public getSpaceAvailability(spaceId: number, date: string, reservationIgnore?: number) {
         date = moment(date).startOf('day').format('YYYY-MM-DD HH:mm:ss');
         const endpoint = ServerProvider.spaceDailyAvailable.replace('{spaceId}', spaceId.toString());
-        const url = `${ServerProvider.apiUrl}${endpoint}?&day=${date}`;
+        const url = `${ServerProvider.apiUrl}${endpoint}?&day=${date}&reservationIgnore=${reservationIgnore}`;
         return firstValueFrom(this.http.get<space[]>(url, {headers: this.headers}));
+    }
+    
+    public getOwnReservations() {
+        const url = `${ServerProvider.apiUrl}${ServerProvider.reservation}`;
+        return firstValueFrom(this.http.get<Reservation[]>(url, {headers: this.headers}));
     }
 
     public scheduleSpace(data: scheduleRequest) {
-        const url = `${ServerProvider.apiUrl}${ServerProvider.schedule}`;
+        const url = `${ServerProvider.apiUrl}${ServerProvider.reservation}`;
         return firstValueFrom(this.http.post<any>(url, data, {headers: this.headers}));
+    }
+
+    public editReservations(id: number, data: scheduleRequest) {
+        const url = `${ServerProvider.apiUrl}${ServerProvider.reservation}/${id}`;
+        return firstValueFrom(this.http.put<any>(url, data, {headers: this.headers}));
+    }
+
+    public cancelReservations(id: number) {
+        const url = `${ServerProvider.apiUrl}${ServerProvider.reservation}/${id}`;
+        return firstValueFrom(this.http.delete<Reservation[]>(url, {headers: this.headers}));
     }
 
     private jsonToForm(source: any): FormData {

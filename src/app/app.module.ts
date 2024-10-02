@@ -18,6 +18,8 @@ import { SpaceComponent } from './pages/space/space.component';
 import { ScheduleSpaceModalComponent } from './components/schedule-space-modal/schedule-space-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastProvider } from './services/toast.service';
+import { ReservationsComponent } from './pages/reservations/reservations.component';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ToastProvider } from './services/toast.service';
     HomeComponent,
     SpacesListComponent,
     SpaceComponent,
-    ScheduleSpaceModalComponent
+    ScheduleSpaceModalComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { ToastProvider } from './services/toast.service';
     MaterialModule,
     HttpClientModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     provideAnimationsAsync(),

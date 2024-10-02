@@ -1,0 +1,45 @@
+<div class="container">
+    <h4>Listado de Reservaciones</h4>
+    <div *ngIf="loading" >
+        <mat-spinner></mat-spinner>
+    </div>
+    <table *ngIf="!loading && reservations" mat-table [dataSource]="reservations" class="mat-elevation-z8">
+  
+      <!-- Nombre del Espacio -->
+      <ng-container matColumnDef="space_name">
+        <th mat-header-cell *matHeaderCellDef> Espacio </th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.space_name }}</td>
+      </ng-container>
+  
+      <!-- Nombre del Evento -->
+      <ng-container matColumnDef="event_name">
+        <th mat-header-cell *matHeaderCellDef> Evento </th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.event_name }}</td>
+      </ng-container>
+  
+      <!-- Fecha de Inicio -->
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef> Inicio </th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.start_date }}</td>
+      </ng-container>
+  
+      <!-- Fecha de Fin -->
+      <ng-container matColumnDef="end_date">
+        <th mat-header-cell *matHeaderCellDef> Fin </th>
+        <td mat-cell *matCellDef="let reservation">{{ reservation.end_date }}</td>
+      </ng-container>
+  
+      <!-- Acciones -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let reservation">
+          <button mat-button (click)="editReservation(reservation)">Editar</button>
+          <button mat-button color="warn" (click)="cancelReservation(reservation.id)">Cancelar</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
