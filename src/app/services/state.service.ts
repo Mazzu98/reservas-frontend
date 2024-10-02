@@ -11,7 +11,8 @@ export class StateProvider {
     }
 
     getUser() {
-        this.server.getUser().then(user => {
+        this.server.getUser()
+            .then(user => {
                 this.user = user;
                 if(user.role == 'admin') {
                     this.router.navigate(['/dashboard']);

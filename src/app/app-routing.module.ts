@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { NoUserGuard } from './guards/noUser.guard';
 import { ClientGuard } from './guards/client.guard';
+import { SpaceComponent } from './pages/space/space.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [NoUserGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent, canActivate: [ClientGuard] },
       { path: 'dashboard', component: HomeComponent, canActivate: [AdminGuard] },
+      { path: 'space/:id', component: SpaceComponent, canActivate: [AuthGuard] },
       // { path: 'profile', component: ProfileComponent } // Agrega otras rutas aquí
     ]
   },

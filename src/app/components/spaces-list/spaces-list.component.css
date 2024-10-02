@@ -1,0 +1,46 @@
+.filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .space-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  .space-row:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .space-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .space-name h4{
+    margin: 0;
+  }
+
+  .space-details {
+    flex-grow: 1;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+  }
+  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  

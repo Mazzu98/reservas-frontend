@@ -1,8 +1,42 @@
 .spacer {
-    flex: 1 1 auto;
-  }
-  
+  flex: 1 1 auto;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+@media (max-width: 1200px) {
   .content {
-    padding: 20px;
+    padding: 20px 100px;
   }
-  
+}
+
+@media (max-width: 992px) {
+  .content {
+    padding: 20px 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 10px 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .content {
+    padding: 10px 15px;
+  }
+}

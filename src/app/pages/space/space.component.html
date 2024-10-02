@@ -1,0 +1,34 @@
+<div class="container">
+    <div *ngIf="loading" class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div *ngIf="!loading && spaceDetails" class="content">
+        <div>
+            <img [src]="spaceDetails.image_url" alt="{{spaceDetails.name}}" class="space-image">
+        </div>
+        <div>
+            <h3>{{ spaceDetails.name }}</h3>
+            <p><strong>Tipo:</strong> {{ spaceDetails.type }}</p>
+            <p><strong>Capacidad:</strong> {{ spaceDetails.capacity }}</p>
+            <p><strong>Descripción:</strong> {{ spaceDetails.description }}</p>
+
+            <div *ngIf="groupedAvailableTimes" class="available-times">
+                <h6>Espacios Disponibles</h6>
+                <mat-form-field appearance="fill">
+                    <mat-label>Seleccionar Fecha</mat-label>
+                    <input matInput [formControl]="dateControl" type="date">
+                </mat-form-field>
+                <div class="available-tags">
+                    <div *ngFor="let interval of groupedAvailableTimes">
+                        <p>{{ interval.start }} - {{ interval.end }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button mat-flat-button (click)="openModal()">Reservar</button>
+        </div>
+    </div>
+</div>
