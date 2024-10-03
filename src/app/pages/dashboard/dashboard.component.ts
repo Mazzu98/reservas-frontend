@@ -68,7 +68,7 @@ export class DashboardComponent {
 
   async deleteSpace(id: number) {
     try {
-      await this.server.cancelReservations(id);
+      await this.server.deleteSpace(id);
       this.toast.showSuccess('Espacio eliminado');
       this.fetchSpaces();
     } 

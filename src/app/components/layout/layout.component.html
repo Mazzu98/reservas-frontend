@@ -4,7 +4,7 @@
     <ng-container *ngIf="appState.user?.role == 'admin'">
       <button mat-button routerLink="/dashboard">Dashboard</button>
     </ng-container>
-    <ng-container *ngIf="appState.user?.role != 'admin'">
+    <ng-container *ngIf="appState.user?.role == 'client'">
       <button mat-button routerLink="/home">Inicio</button>
       <button mat-button routerLink="/reservations">Reservas</button>
     </ng-container>

@@ -100,6 +100,11 @@ export class ServerProvider {
         return firstValueFrom(this.http.post<any>(url, data, {headers: this.headers}));
     }
 
+    public deleteSpace(id: number) {
+        const url = `${ServerProvider.apiUrl}${ServerProvider.space}/${id}`;
+        return firstValueFrom(this.http.delete<any>(url, {headers: this.headers}));
+    }
+
     private jsonToForm(source: any): FormData {
         let formData = new FormData();
         Object.keys(source).forEach(key => {

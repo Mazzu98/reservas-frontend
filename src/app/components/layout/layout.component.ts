@@ -10,18 +10,22 @@ import { StateProvider } from '../../services/state.service';
 })
 export class LayoutComponent {
 
-  constructor(private router: Router, private server: ServerProvider,public appState: StateProvider) {
+  constructor(private router: Router, private server: ServerProvider,public appState: StateProvider) {}
+
+  ngOnInit() {
     const token = localStorage.getItem('token');
-    if (!token) {
-      this.router.navigate(['/login']);
+    if(token) {
+        this.server.updateHeaders(token);
+        this.appState.getUser();   
     }
-    else{
-      this.server.updateHeaders(token);
+    else {
+      this.router.navigate(['/login']);
     }
   }
 
   logout() {
     this.server.updateHeaders();
+    this.appState.user = null;
     localStorage.removeItem('token');
     this.router.navigate(['/login']); 
   }
